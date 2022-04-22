@@ -3,6 +3,10 @@ package com.dev.airon.cursomc.resources;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,12 +20,16 @@ public class CategoriaResource {
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Categoria> listaCategorias(){
 		List<Categoria> categorias = new ArrayList<>();
-		Categoria categoria1 = new Categoria(1,"Informática");
-		Categoria categoria2 = new Categoria(2,"Escritório");
+		Categoria categoria1 = new Categoria("Informática");
+		Categoria categoria2 = new Categoria("Escritório");
 		categorias.add(categoria1);
 		categorias.add(categoria2);
 			
 		return categorias;
 	}
+	
+	
+	
+	
 
 }
