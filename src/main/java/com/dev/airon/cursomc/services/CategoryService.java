@@ -17,7 +17,8 @@ public class CategoryService {
 	public Category findCategory(Long id) {
 		Optional<Category> objCategory = repo.findById(id);
 		
-		return objCategory.orElse(null);
+		return objCategory.orElseThrow(() -> new com.dev.airon.cursomc.exceptions.ObjectNotFoundException(
+				 "Objeto não encontrado! Id: " + id + ", Tipo: " + Category.class.getName()));
 	}
 
 }
