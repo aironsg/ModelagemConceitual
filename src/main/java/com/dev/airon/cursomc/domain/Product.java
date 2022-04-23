@@ -9,29 +9,36 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Category implements Serializable {
+public class Product implements Serializable {
 	
+
 	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	private Double preco;
 	
-	@ManyToMany(mappedBy = "categorys")
-	private List<Product> products = new ArrayList<>();
+	@ManyToMany
+	@JoinTable(name = "PRODUTO_CATEGORIA",
+			joinColumns = @JoinColumn(name = "produto_id"),
+			inverseJoinColumns = @JoinColumn(name = "categoria_id")
+			)
+	private List<Category> categorys = new ArrayList<>();
 	
-	
-	public Category() {
+	public Product() {
 		
 	}
-	
-	public Category(String nome) {
-		
+
+	public Product(String nome, Double preco) {
+		super();
 		this.nome = nome;
+		this.preco = preco;
 	}
 
 	public Long getId() {
@@ -50,20 +57,27 @@ public class Category implements Serializable {
 		this.nome = nome;
 	}
 
-
-	public List<Product> getProducts() {
-		return products;
+	public Double getPreco() {
+		return preco;
 	}
 
-	public void setProdutos(List<Product> products) {
-		this.products = products;
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+
+	public List<Category> getCategorys() {
+		return categorys;
+	}
+
+	public void setCategorias(List<Category> categorys) {
+		this.categorys = categorys;
 	}
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -72,10 +86,9 @@ public class Category implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		Product other = (Product) obj;
 		return Objects.equals(id, other.id);
 	}
-	
 	
 	
 	
