@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,9 +23,14 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Cod")
 	private Long id;
-	private String nome;
-	private Double preco;
+	
+	@Column(name = "Nome")
+	private String name;
+	
+	@Column(name = "Preco")
+	private Double price;
 	
 	
 	@JsonBackReference
@@ -33,17 +39,20 @@ public class Product implements Serializable {
 			joinColumns = @JoinColumn(name = "produto_id"),
 			inverseJoinColumns = @JoinColumn(name = "categoria_id")
 			)
+	@Column(name = "Categorias")
 	private List<Category> categorys = new ArrayList<>();
 	
 	public Product() {
 		
 	}
 
-	public Product(String nome, Double preco) {
+	public Product(String name, Double price) {
 		super();
-		this.nome = nome;
-		this.preco = preco;
+		this.name = name;
+		this.price = price;
 	}
+
+	
 
 	public Long getId() {
 		return id;
@@ -53,20 +62,24 @@ public class Product implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public Double getPreco() {
-		return preco;
+	public Double getPrice() {
+		return price;
 	}
 
-	public void setPreco(Double preco) {
-		this.preco = preco;
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public void setCategorys(List<Category> categorys) {
+		this.categorys = categorys;
 	}
 
 	public List<Category> getCategorys() {

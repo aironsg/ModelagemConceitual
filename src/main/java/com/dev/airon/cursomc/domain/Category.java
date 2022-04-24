@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,11 +21,15 @@ public class Category implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "Cod")
 	private Long id;
-	private String nome;
+	
+	@Column(name = "nome")
+	private String name;
 	
 	@JsonManagedReference
 	@ManyToMany(mappedBy = "categorys")
+	@Column(name = "Produtos")
 	private List<Product> products = new ArrayList<>();
 	
 	
@@ -32,10 +37,12 @@ public class Category implements Serializable {
 		
 	}
 	
-	public Category(String nome) {
+	public Category(String name) {
 		
-		this.nome = nome;
+		this.name = name;
 	}
+
+	
 
 	public Long getId() {
 		return id;
@@ -45,20 +52,19 @@ public class Category implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
-
 
 	public List<Product> getProducts() {
 		return products;
 	}
 
-	public void setProdutos(List<Product> products) {
+	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
 
