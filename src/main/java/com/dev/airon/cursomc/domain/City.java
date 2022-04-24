@@ -1,72 +1,61 @@
 package com.dev.airon.cursomc.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+@Entity(name = "cidade")
+public class City implements Serializable {
 
-@Entity(name = "categoria")
-public class Category implements Serializable {
-	
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome;
+	private String name;
 	
-	@JsonManagedReference
-	@ManyToMany(mappedBy = "categorys")
-	private List<Product> products = new ArrayList<>();
+	@ManyToOne
+	@JoinColumn(name = "estado_id")
+	private State state;
 	
-	
-	public Category() {
+	public City() {
 		
 	}
 	
-	public Category(String nome) {
-		
-		this.nome = nome;
+	public City(String name, State state) {
+		super();
+		this.name = name;
+		this.state = state;
 	}
 
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-
-	public List<Product> getProducts() {
-		return products;
+	public State getState() {
+		return state;
 	}
-
-	public void setProdutos(List<Product> products) {
-		this.products = products;
+	public void setState(State state) {
+		this.state = state;
 	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -75,7 +64,7 @@ public class Category implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		City other = (City) obj;
 		return Objects.equals(id, other.id);
 	}
 	

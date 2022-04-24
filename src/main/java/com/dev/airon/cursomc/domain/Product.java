@@ -15,7 +15,7 @@ import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-@Entity
+@Entity(name = "produto")
 public class Product implements Serializable {
 	
 

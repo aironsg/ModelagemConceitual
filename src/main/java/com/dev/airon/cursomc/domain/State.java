@@ -9,32 +9,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+@Entity(name = "estado")
+public class State implements Serializable {
 
-@Entity(name = "categoria")
-public class Category implements Serializable {
-	
 	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome;
-	
-	@JsonManagedReference
-	@ManyToMany(mappedBy = "categorys")
-	private List<Product> products = new ArrayList<>();
-	
-	
-	public Category() {
-		
+	private String name;
+	@OneToMany(mappedBy = "state")
+	private List<City> citys = new ArrayList<>();
+
+	public State() {
+
 	}
-	
-	public Category(String nome) {
-		
-		this.nome = nome;
+
+	public State(String name) {
+		super();
+		this.name = name;
 	}
 
 	public Long getId() {
@@ -45,28 +39,27 @@ public class Category implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-
-	public List<Product> getProducts() {
-		return products;
+	public List<City> getCitys() {
+		return citys;
 	}
 
-	public void setProdutos(List<Product> products) {
-		this.products = products;
+	public void setCitys(List<City> citys) {
+		this.citys = citys;
 	}
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -75,13 +68,8 @@ public class Category implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		State other = (State) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
-	
-	
 
 }
