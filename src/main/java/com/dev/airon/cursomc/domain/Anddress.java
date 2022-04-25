@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity(name = "Endereco")
 public class Anddress implements Serializable {
 
@@ -33,6 +35,7 @@ public class Anddress implements Serializable {
 	private String complement;
 	private String cep;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "Cliente_id")
 	private Client client;

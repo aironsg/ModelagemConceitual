@@ -1,6 +1,5 @@
 package com.dev.airon.cursomc;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +70,7 @@ public class CursomcApplication implements CommandLineRunner {
 		City city2 = new City("São Paulo", state2);
 		City city3 = new City("Campinas", state2);
 		
-		Client client1 = new Client("Joao santana", "joao@teste.com", "000.111.222-33", TypeClient.PHYSICALPERSON);
+		Client client1 = new Client("Joao santana", "joao@teste.com", "000.111.222-33", TypeClient.PESSOAFISICA);
 		client1.getPhones().addAll(Arrays.asList("9-9494-2525", "9-9235-4518"));
 		
 		

@@ -2,8 +2,8 @@ package com.dev.airon.cursomc.domain.enums;
 
 public enum TypeClient {
 	
-	PHYSICALPERSON(1, "Pessoa Fisica"),
-	LEGALPERSON(2, "Pessoa Juridica");
+	PESSOAFISICA(1, "Pessoa Fisica"),
+	PESSOAJURIDICA(2, "Pessoa Juridica");
 	
 	private Integer cod;
 	private String description;

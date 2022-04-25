@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dev.airon.cursomc.domain.Category;
+import com.dev.airon.cursomc.exceptions.ObjectNotFoundException;
 import com.dev.airon.cursomc.repositories.CategoryRepository;
 
 @Service
@@ -17,7 +18,7 @@ public class CategoryService {
 	public Category findCategory(Long id) {
 		Optional<Category> objCategory = repo.findById(id);
 		
-		return objCategory.orElseThrow(() -> new com.dev.airon.cursomc.exceptions.ObjectNotFoundException(
+		return objCategory.orElseThrow(() -> new ObjectNotFoundException(
 				 "Objeto não encontrado! Id: " + id + ", Tipo: " + Category.class.getName()));
 	}
 
