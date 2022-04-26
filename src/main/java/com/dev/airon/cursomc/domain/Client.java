@@ -50,6 +50,9 @@ public class Client implements Serializable{
 	@CollectionTable(name = "TELEFONE")
 	private Set<String> phones = new HashSet<>();
 	
+	@OneToMany(mappedBy = "client")
+	private List<Request> requests = new ArrayList<>();
+	
 	public Client() {
 		
 	}
@@ -102,6 +105,16 @@ public class Client implements Serializable{
 		this.type = type.getCod();
 	}
 	
+	
+
+	public List<Request> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(List<Request> requests) {
+		this.requests = requests;
+	}
+
 	
 
 	public List<Anddress> getAnddress() {
