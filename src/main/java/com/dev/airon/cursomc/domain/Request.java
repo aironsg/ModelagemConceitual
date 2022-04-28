@@ -46,12 +46,12 @@ public class Request  implements Serializable{
 
 	
 
-	public Request(Date status, Anddress deliveryAnddress, Client client, Payment payment) {
+	public Request(Date status, Anddress deliveryAnddress, Client client) {
 		super();
 		this.status = status;
 		this.deliveryAnddress = deliveryAnddress;
 		this.client = client;
-		this.payment = payment;
+		
 	}
 	
 	

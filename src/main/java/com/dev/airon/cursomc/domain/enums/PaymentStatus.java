@@ -2,7 +2,7 @@ package com.dev.airon.cursomc.domain.enums;
 
 public enum PaymentStatus {
 	
-	EFETUADO(1,"Efetuado"),
+	QUITADO(1,"Quitado"),
 	PENDENTE (2, "Pendente"),
 	CANCELADO(3, "Cancelado");
 	
